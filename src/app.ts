@@ -1,10 +1,11 @@
 import * as express from 'express'
+import UserRoutes from './routes/UserRoutes';
 
-class App {
-  public express
+class Server {
+  public app
 
   constructor () {
-    this.express = express()
+    this.app = express()
     this.mountRoutes()
   }
 
@@ -15,8 +16,9 @@ class App {
         message: 'Hello World!'
       })
     })
-    this.express.use('/', router)
+    this.app.use('/', router)
+    this.app.use('/user', UserRoutes)
   }
 }
 
-export default new App().express
+export default new Server().app
