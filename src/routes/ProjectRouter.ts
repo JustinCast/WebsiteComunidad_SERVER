@@ -9,6 +9,11 @@ class ProjectRouter {
         this.routes()
     }
 
+    /**
+     * Metodo que obtendra todos los proyectos de la BD
+     * @param req 
+     * @param res 
+     */
     public GetProjects(req: Request, res: Response): void {
         Project.find({})
             .then(data => {
@@ -27,6 +32,11 @@ class ProjectRouter {
             })
     }
 
+    /**
+     * Metodo que obtendra un proyecto
+     * @param req 
+     * @param res 
+     */
     public GetProject(req: Request, res: Response): void {
         const projectId: string = req.params.projectId;
 
@@ -51,6 +61,11 @@ class ProjectRouter {
         })
     }
 
+    /**
+     * Metodo que creara un proyecto
+     * @param req 
+     * @param res 
+     */
     public CreateProject(req: Request, res: Response): void {
         const nombre: string = req.body.nombre;
         const descripcion: string = req.body.descripcion;
@@ -85,6 +100,11 @@ class ProjectRouter {
         })
     }
 
+    /**
+     * Metodo que actualizara un proyecto
+     * @param req 
+     * @param res 
+     */
     public UpdateProject(req: Request, res: Response): void {
         const projectId: string = req.params.projectId;
 
@@ -109,6 +129,11 @@ class ProjectRouter {
         })
     }
 
+    /**
+     * Metodo que eliminara un proyecto
+     * @param req 
+     * @param res 
+     */
     public DeleteProject(req: Request, res: Response): void {
         const projectId: string = req.params.projectId;
 
@@ -133,6 +158,9 @@ class ProjectRouter {
         })
     }
 
+    /**
+     * Seteo de los metodos manejadores
+     */
     public routes() {
         this.router.get('/', this.GetProjects);
         this.router.get('/:projectId', this.GetProject)

@@ -10,6 +10,11 @@ class MemberRouter {
     this.routes();
   }
 
+  /**
+   * Metodo que obtendra todos los miembros de la BD
+   * @param req 
+   * @param res 
+   */
   public GetMembers(req: Request, res: Response): void {    
     Member.find()
     .then((members) => {
@@ -32,6 +37,11 @@ class MemberRouter {
     })  
   }
 
+  /**
+   * Metodo que obtendra un miembro mediante su ID
+   * @param req 
+   * @param res 
+   */
   public GetMember(req: Request, res: Response): void {
     const memberId: string = req.params.memberId;
 
@@ -56,6 +66,11 @@ class MemberRouter {
     })
   }
 
+  /**
+   * Metodo que creara un miembro en la BD
+   * @param req 
+   * @param res 
+   */
   public CreateMember(req: Request, res: Response): void {
     const nombre: string = req.body.nombre;
     const apellidos: string = req.body.apellidos;
@@ -120,6 +135,11 @@ class MemberRouter {
     })
   }
 
+  /**
+   * Metodo que eliminara un miembro de la BD mediante su ID
+   * @param req 
+   * @param res 
+   */
   public DeleteMember(req: Request, res: Response): void {
     const memberId: string = req.params.memberId;
 
