@@ -91,6 +91,11 @@ class MemberRouter {
 
   }
 
+  /**
+   * Metodo que actualizara un miembro en la BD
+   * @param req 
+   * @param res 
+   */
   public UpdateMember(req: Request, res: Response): void {
     const memberId: string = req.params.memberId;
 
@@ -113,7 +118,6 @@ class MemberRouter {
         error
       });
     })
-
   }
 
   public DeleteMember(req: Request, res: Response): void {
