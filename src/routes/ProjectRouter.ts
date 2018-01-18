@@ -40,7 +40,7 @@ class ProjectRouter {
     public GetProject(req: Request, res: Response): void {
         const projectId: string = req.params.projectId;
 
-        Project.findOne({ projectId })
+        Project.findById(projectId)
         .then((data) => {
         let code = res.statusCode;
         let msg = res.statusMessage;
@@ -108,7 +108,7 @@ class ProjectRouter {
     public UpdateProject(req: Request, res: Response): void {
         const projectId: string = req.params.projectId;
 
-        Project.findOneAndUpdate({ projectId }, req.body)
+        Project.findByIdAndUpdate(projectId, req.body)
         .then((data) => {
         let code = res.statusCode;
         let msg = res.statusMessage;
@@ -137,7 +137,7 @@ class ProjectRouter {
     public DeleteProject(req: Request, res: Response): void {
         const projectId: string = req.params.projectId;
 
-        Project.findOneAndRemove({ projectId })
+        Project.findByIdAndRemove(projectId)
         .then(() => {
         let code = res.statusCode;
         let msg = res.statusMessage;

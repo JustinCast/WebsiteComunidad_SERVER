@@ -16,25 +16,25 @@ class MemberRouter {
    * @param res 
    */
   public GetMembers(req: Request, res: Response): void {    
-    Member.find()
-    .then((members) => {
-      let code = res.statusCode;
-      let msg = res.statusMessage;
-      res.json({
-        code,
-        msg,
-        members
-      });
-    })
-    .catch((error) => {
-      let code = res.statusCode;
-      let msg = res.statusMessage;
-      res.json({
-        code,
-        msg,
-        error
-      });
-    })  
+    Member.find({})
+      .then((members) => {
+        let code = res.statusCode;
+        let msg = res.statusMessage;
+        res.json({
+          code,
+          msg,
+          members
+        });
+      })
+      .catch((error) => {
+        let code = res.statusCode;
+        let msg = res.statusMessage;
+        res.json({
+          code,
+          msg,
+          error
+        });
+      })  
   }
 
   /**
@@ -44,8 +44,8 @@ class MemberRouter {
    */
   public GetMember(req: Request, res: Response): void {
     const memberId: string = req.params.memberId;
-
-    Member.findOne({ memberId })
+    console.log({memberId:  memberId})
+    Member.findById( memberId )
     .then((data) => {
       let code = res.statusCode;
       let msg = res.statusMessage;
@@ -114,7 +114,7 @@ class MemberRouter {
   public UpdateMember(req: Request, res: Response): void {
     const memberId: string = req.params.memberId;
 
-    Member.findOneAndUpdate({ memberId }, req.body)
+    Member.findByIdAndUpdate(memberId, req.body)
     .then((data) => {
       let code = res.statusCode;
       let msg = res.statusMessage;
@@ -143,7 +143,7 @@ class MemberRouter {
   public DeleteMember(req: Request, res: Response): void {
     const memberId: string = req.params.memberId;
 
-    Member.findOneAndRemove({ memberId })
+    Member.findByIdAndRemove(memberId)
     .then(() => {
       let code = res.statusCode;
       let msg = res.statusMessage;
@@ -166,8 +166,8 @@ class MemberRouter {
 
   // set up our routes
   routes() {
-    this.router.get('/', this.GetMembers);
     this.router.get('/:memberId', this.GetMember)
+    this.router.get('/', this.GetMembers);
     this.router.post('/', this.CreateMember);
     this.router.put('/:memberId', this.UpdateMember);
     this.router.delete('/:memberId', this.DeleteMember);
