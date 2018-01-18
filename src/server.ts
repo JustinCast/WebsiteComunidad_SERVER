@@ -10,8 +10,8 @@ import * as path from 'path';
 
 
 // custom modules
-import ProjectRouter from './router/ProjectRouter';
-import MemberRouter from './router/MemberRouter';
+import ProjectRouter from './routes/ProjectRouter';
+import MemberRouter from './routes/MemberRouter';
 
 // Server class
 class Server {
