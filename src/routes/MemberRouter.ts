@@ -17,13 +17,7 @@ this.routes();
 public GetMembers(req: Request, res: Response): void {    
 Member.find({})
   .then((members) => {
-    let code = res.statusCode;
-    let msg = res.statusMessage;
-    res.json({
-      code,
-      msg,
-      members
-    });
+    res.send(members)
   })
   .catch((error) => {
     let code = res.statusCode;
