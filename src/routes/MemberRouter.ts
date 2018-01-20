@@ -105,27 +105,28 @@ member.save()
  * @param res 
  */
 public UpdateMember(req: Request, res: Response): void {
-const memberId: string = req.params.memberId;
-
-Member.findByIdAndUpdate(memberId, req.body)
-.then((data) => {
-  let code = res.statusCode;
-  let msg = res.statusMessage;
-  res.json({
-    code,
-    msg,
-    data
-  });
-})
-.catch((error) => {
-  let code = res.statusCode;
-  let msg = res.statusMessage;
-  res.json({
-    code,
-    msg,
-    error
-  });
-})
+  const memberId: string = req.params.memberId;
+  console.log(req.body)
+  Member.findByIdAndUpdate(memberId, req.body)
+  .then((data) => {
+    let code = res.statusCode;
+    let msg = res.statusMessage;
+    res.json({
+      code,
+      msg,
+      data
+    });
+    console.log('Miembro actualizado')
+  })
+  .catch((error) => {
+    let code = res.statusCode;
+    let msg = res.statusMessage;
+    res.json({
+      code,
+      msg,
+      error
+    });
+  })
 }
 
 /**
