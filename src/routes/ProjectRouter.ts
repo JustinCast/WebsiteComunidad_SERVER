@@ -15,22 +15,18 @@ class ProjectRouter {
      * @param res 
      */
     public GetProjects(req: Request, res: Response): void {
-        Project.find({})
-            .then(data => {
-                const status = req.statusCode
-                res.json({
-                    status,
-                    data
-                })
+    Project.find({})
+        .then(data => {
+            res.json(data)
+        })
+        .catch(err => {
+            const status = req.statusCode
+            res.json({
+                status,
+                err
             })
-            .catch(err => {
-                const status = req.statusCode
-                res.json({
-                    status,
-                    err
-                })
-            })
-    }
+        })
+}
 
     /**
      * Metodo que obtendra un proyecto
@@ -42,13 +38,13 @@ class ProjectRouter {
 
         Project.findById(projectId)
         .then((data) => {
-        let code = res.statusCode;
-        let msg = res.statusMessage;
-        res.json({
-            code,
-            msg,
-            data
-        });
+            let code = res.statusCode;
+            let msg = res.statusMessage;
+            res.json({
+                code,
+                msg,
+                data
+            });
         })
         .catch((error) => {
         let code = res.statusCode;

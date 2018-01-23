@@ -2,170 +2,170 @@ import { Router, Request, Response } from 'express';
 import Member from '../models/Member';
 
 class MemberRouter {
-router: Router;
+  router: Router;
 
-constructor() {
-this.router = Router();
-this.routes();
-}
+  constructor() {
+    this.router = Router();
+    this.routes();
+  }
 
-/**
- * Metodo que obtendra todos los miembros de la BD
- * @param req 
- * @param res 
- */
-public GetMembers(req: Request, res: Response): void {    
-Member.find({})
-  .then((members) => {
-    res.send(members)
-  })
-  .catch((error) => {
-    let code = res.statusCode;
-    let msg = res.statusMessage;
-    res.json({
-      code,
-      msg,
-      error
-    });
-  })  
-}
+  /**
+   * Metodo que obtendra todos los miembros de la BD
+   * @param req 
+   * @param res 
+   */
+  public GetMembers(req: Request, res: Response): void {    
+    Member.find({})
+      .then((members) => {
+        res.send(members)
+      })
+      .catch((error) => {
+        let code = res.statusCode;
+        let msg = res.statusMessage;
+        res.json({
+          code,
+          msg,
+          error
+        });
+      })  
+  }
 
-/**
- * Metodo que obtendra un miembro mediante su ID
- * @param req 
- * @param res 
- */
-public GetMember(req: Request, res: Response): void {
-const memberId: string = req.params.memberId;
-console.log({memberId:  memberId})
-Member.findById( memberId )
-.then((data) => {
-  let code = res.statusCode;
-  let msg = res.statusMessage;
-  res.json({
-    code,
-    msg,
-    data
-  });
-})
-.catch((error) => {
-  let code = res.statusCode;
-  let msg = res.statusMessage;
-  res.json({
-    code,
-    msg,
-    error
-  });
-})
-}
+  /**
+   * Metodo que obtendra un miembro mediante su ID
+   * @param req 
+   * @param res 
+   */
+  public GetMember(req: Request, res: Response): void {
+    const memberId: string = req.params.memberId;
+    console.log({memberId:  memberId})
+    Member.findById( memberId )
+    .then((data) => {
+      let code = res.statusCode;
+      let msg = res.statusMessage;
+      res.json({
+        code,
+        msg,
+        data
+      });
+    })
+    .catch((error) => {
+      let code = res.statusCode;
+      let msg = res.statusMessage;
+      res.json({
+        code,
+        msg,
+        error
+      });
+    })
+  }
 
-/**
- * Metodo que creara un miembro en la BD
- * @param req 
- * @param res 
- */
-public CreateMember(req: Request, res: Response): void {
-const nombre: string = req.body.nombre;
-const apellidos: string = req.body.apellidos;
-const especialidad: string = req.body.especialidad;
-const github_user: string = req.body.github_user
+  /**
+   * Metodo que creara un miembro en la BD
+   * @param req 
+   * @param res 
+   */
+  public CreateMember(req: Request, res: Response): void {
+    const nombre: string = req.body.nombre;
+    const apellidos: string = req.body.apellidos;
+    const especialidad: string = req.body.especialidad;
+    const github_user: string = req.body.github_user
 
-const member = new Member({
-  nombre,
-  apellidos,
-  especialidad,
-  github_user
-})
+    const member = new Member({
+      nombre,
+      apellidos,
+      especialidad,
+      github_user
+    })
 
-member.save()
-.then((data) => {
-  let code = res.statusCode;
-  let msg = res.statusMessage;
-  res.json({
-    code,
-    msg,
-    data
-  });
-})
-.catch((error) => {
-  let code = res.statusCode;
-  let msg = res.statusMessage;
-  res.json({
-    code,
-    msg,
-    error
-  });
-})
+    member.save()
+    .then((data) => {
+      let code = res.statusCode;
+      let msg = res.statusMessage;
+      res.json({
+        code,
+        msg,
+        data
+      });
+    })
+    .catch((error) => {
+      let code = res.statusCode;
+      let msg = res.statusMessage;
+      res.json({
+        code,
+        msg,
+        error
+      });
+    })
 
-}
+  }
 
-/**
- * Metodo que actualizara un miembro en la BD
- * @param req 
- * @param res 
- */
-public UpdateMember(req: Request, res: Response): void {
-  const memberId: string = req.params.memberId;
-  console.log(req.body)
-  Member.findByIdAndUpdate(memberId, req.body)
-  .then((data) => {
-    let code = res.statusCode;
-    let msg = res.statusMessage;
-    res.json({
-      code,
-      msg,
-      data
-    });
-    console.log('Miembro actualizado')
-  })
-  .catch((error) => {
-    let code = res.statusCode;
-    let msg = res.statusMessage;
-    res.json({
-      code,
-      msg,
-      error
-    });
-  })
-}
+  /**
+   * Metodo que actualizara un miembro en la BD
+   * @param req 
+   * @param res 
+   */
+  public UpdateMember(req: Request, res: Response): void {
+    const memberId: string = req.params.memberId;
+    console.log(req.body)
+    Member.findByIdAndUpdate(memberId, req.body)
+    .then((data) => {
+      let code = res.statusCode;
+      let msg = res.statusMessage;
+      res.json({
+        code,
+        msg,
+        data
+      });
+      console.log('Miembro actualizado')
+    })
+    .catch((error) => {
+      let code = res.statusCode;
+      let msg = res.statusMessage;
+      res.json({
+        code,
+        msg,
+        error
+      });
+    })
+  }
 
-/**
- * Metodo que eliminara un miembro de la BD mediante su ID
- * @param req 
- * @param res 
- */
-public DeleteMember(req: Request, res: Response): void {
-const memberId: string = req.params.memberId;
+  /**
+   * Metodo que eliminara un miembro de la BD mediante su ID
+   * @param req 
+   * @param res 
+   */
+  public DeleteMember(req: Request, res: Response): void {
+    const memberId: string = req.params.memberId;
 
-Member.findByIdAndRemove(memberId)
-.then(() => {
-  let code = res.statusCode;
-  let msg = res.statusMessage;
-  res.json({
-    code,
-    msg,
-    "success": "Member was deleted."
-  });
-})
-.catch((error) => {
-  let code = res.statusCode;
-  let msg = res.statusMessage;
-  res.json({
-    code,
-    msg,
-    error
-  });
-})
-}
+    Member.findByIdAndRemove(memberId)
+    .then(() => {
+      let code = res.statusCode;
+      let msg = res.statusMessage;
+      res.json({
+        code,
+        msg,
+        "success": "Member was deleted."
+      });
+    })
+    .catch((error) => {
+      let code = res.statusCode;
+      let msg = res.statusMessage;
+      res.json({
+        code,
+        msg,
+        error
+      });
+    })
+  }
 
-// set up our routes
-routes() {
-this.router.get('/:memberId', this.GetMember)
-this.router.get('/', this.GetMembers);
-this.router.post('/', this.CreateMember);
-this.router.put('/:memberId', this.UpdateMember);
-this.router.delete('/:memberId', this.DeleteMember);
-}
+  // set up our routes
+  routes() {
+    this.router.get('/:memberId', this.GetMember)
+    this.router.get('/', this.GetMembers);
+    this.router.post('/', this.CreateMember);
+    this.router.put('/:memberId', this.UpdateMember);
+    this.router.delete('/:memberId', this.DeleteMember);
+  }
 
 }
 
