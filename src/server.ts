@@ -1,11 +1,16 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
+// no
 import * as cookieParser from 'cookie-parser';
+// no
 import * as compression from 'compression';
+// no
 import * as logger from 'morgan';
+// no
 import * as helmet from 'helmet';
 import * as cors from 'cors';
+// no
 import * as path from 'path';
 
 
@@ -36,7 +41,9 @@ class Server {
     });
 
     // express middleware
+    // para parsear solicitudes
     this.app.use(bodyParser.urlencoded({ extended: true }));
+    // para que sea de tipo json
     this.app.use(bodyParser.json());
     this.app.use(cookieParser());
     this.app.use(logger('dev'));
@@ -57,16 +64,16 @@ class Server {
   // application routes
   public routes(): void {
 
-    let router: express.Router;
-    router = express.Router();
-    router.get('', (req, res) => {
-      res.json({
-        message: 'Ruta inicial del backend'
-      })
-    })
-    this.app.use('/', router)
-    this.app.use('/proyectos', ProjectRouter);
-    this.app.use('/miembros', MemberRouter);
+    // let router: express.Router;
+    // router = express.Router();
+    // router.get('', (req, res) => {
+    //   res.json({
+    //     message: 'Ruta inicial del backend'
+    //   })
+    // })
+    // this.app.use('/', router)
+    this.app.use('/projects', ProjectRouter);
+    this.app.use('/members', MemberRouter);
   }
 }
 

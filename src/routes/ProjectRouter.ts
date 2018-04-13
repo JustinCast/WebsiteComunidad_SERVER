@@ -1,4 +1,4 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { Router, Request, Response } from "express";
 import Project from "../models/Project";
 
 class ProjectRouter {
@@ -106,22 +106,22 @@ class ProjectRouter {
 
         Project.findByIdAndUpdate(projectId, req.body)
         .then((data) => {
-        let code = res.statusCode;
-        let msg = res.statusMessage;
-        res.json({
-            code,
-            msg,
-            data
-        });
+            let code = res.statusCode;
+            let msg = res.statusMessage;
+            res.json({
+                code,
+                msg,
+                data
+            });
         })
         .catch((error) => {
-        let code = res.statusCode;
-        let msg = res.statusMessage;
-        res.json({
-            code,
-            msg,
-            error
-        });
+            let code = res.statusCode;
+            let msg = res.statusMessage;
+            res.json({
+                code,
+                msg,
+                error
+            });
         })
     }
 
